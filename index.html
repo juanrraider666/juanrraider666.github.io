@@ -3,53 +3,88 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Una Noche Especial</title>
+    <title>Una Pregunta Muy Especial</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(to right, #ff758c, #ff7eb3);
             text-align: center;
-            background-color: #fbe3e8;
-            padding: 20px;
+            color: white;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
         }
         .container {
-            max-width: 600px;
-            margin: auto;
-            background: white;
-            padding: 20px;
-            border-radius: 15px;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
         }
-        img {
-            max-width: 100%;
-            border-radius: 10px;
+        h1 {
+            font-size: 3em;
+            opacity: 0;
+            animation: fadeIn 2s forwards;
+        }
+        .message {
+            font-size: 1.5em;
+            max-width: 80%;
+            margin: 20px auto;
+            opacity: 0;
+            animation: fadeIn 3s 1s forwards;
+        }
+        .heart {
+            font-size: 50px;
+            animation: heartbeat 1.5s infinite;
         }
         .button {
-            display: inline-block;
-            margin-top: 20px;
-            padding: 10px 20px;
-            font-size: 18px;
-            color: white;
-            background: #e63946;
+            background-color: white;
+            color: #ff758c;
+            padding: 15px 30px;
+            font-size: 1.2em;
             border: none;
-            border-radius: 5px;
+            border-radius: 30px;
             cursor: pointer;
-            text-decoration: none;
+            margin-top: 20px;
+            opacity: 0;
+            animation: fadeIn 3s 2s forwards;
+            transition: transform 0.3s;
         }
         .button:hover {
-            background: #d62839;
+            transform: scale(1.1);
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes heartbeat {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.3); }
+            100% { transform: scale(1); }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Para Ti, Mi Amor ❤️</h1>
-        <p>Desde que te conocí, supe que eras la persona con la que quiero compartir mi vida. Cada momento a tu lado ha sido mágico y especial.</p>
-        <img src="https://media.giphy.com/media/3o6Zt481isNVuQI1l6/giphy.gif" alt="Romantic GIF">
-        <p>Por eso, quiero invitarte a una cena muy especial, una noche solo para nosotros dos, llena de amor y magia.</p>
-        <h2>Detalles:</h2>
-        <p>📅 Fecha: [Día de la cena] <br>📍 Lugar: [Restaurante o ubicación especial] <br>🕰 Hora: [Hora]</p>
-        <p>Te espero con el corazón abierto y un anillo en mis manos. ¿Aceptarás mi invitación?</p>
-        <a href="#" class="button">Sí, quiero 💍</a>
+        <h1>Una pregunta muy especial...</h1>
+        <div class="message">
+            <p>Desde el primer momento en que te vi y nos conocimos, supe que eras alguien especial en mi vida.</p>
+            <p>Hemos compartido momentos muy lindos y tu tiempo es lo que más valoro.</p>
+            <p>Por eso quiero preguntarte algo muy importante... ❤️</p>
+        </div>
+        <div class="heart">❤️</div>
+        <button class="button" onclick="showProposal()">Haz clic aquí</button>
     </div>
+
+    <script>
+        function showProposal() {
+            document.body.innerHTML = `
+                <div class="container">
+                    <h1>¿Quieres acompañarme el sabado a hacerlo real ? 💍</h1>
+                    <div class="heart">💖</div>
+                </div>
+            `;
+        }
+    </script>
 </body>
 </html>
