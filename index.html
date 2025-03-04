@@ -13,14 +13,16 @@
             color: white;
             margin: 0;
             padding: 0;
-            overflow: hidden;
+            overflow-y: auto;
+            overflow-x: hidden;
         }
         .container {
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            min-height: 100vh;
+            padding: 20px;
         }
         h1 {
             font-size: 3em;
@@ -52,6 +54,19 @@
         .hidden {
             display: none;
         }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2em;
+            }
+            .message {
+                font-size: 1.2em;
+            }
+            .button {
+                font-size: 1em;
+                padding: 10px 20px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -69,11 +84,11 @@
     <div class="container hidden" id="proposal">
         <h1>¿Quieres acompañarme el sábado a hacerlo real? 💍</h1>
         <img src="https://media.giphy.com/media/Nzyu1yTNdtDws/giphy.gif?cid=790b76119jdfv0uomkams8wdleur7pwyqtxkd37kfvyozwo9&ep=v1_gifs_search&rid=giphy.gif&ct=g" alt="Romantic GIF">
-        <button class="button" onclick="showFinalMessage()">Sí, quiero ❤️</button>
+        <button class="button" onclick="showFinalMessage()">shi, quiero ❤️</button>
     </div>
 
     <div class="container hidden" id="final-message">
-        <h1>¡Sabía que dirías que sí! jijijij 🎉💖</h1>
+        <h1>¡Sabía que dirías que sí! 🎉💖</h1>
         <p>Te amo con todo mi corazón y no puedo esperar para compartir este momento contigo.</p>
         <img src="https://media.giphy.com/media/ttU0HSuyrfSfe/giphy.gif?cid=790b76119jdfv0uomkams8wdleur7pwyqtxkd37kfvyozwo9&ep=v1_gifs_search&rid=giphy.gif&ct=g" alt="Celebración">
     </div>
