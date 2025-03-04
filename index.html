@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Una Pregunta Muy Especial</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1"></script>
     <style>
         body {
             font-family: 'Arial', sans-serif;
@@ -24,22 +26,29 @@
             min-height: 100vh;
             padding: 20px;
         }
-        h1 {
-            font-size: 3em;
+        .card {
+            background: white;
+            color: #ff758c;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+            max-width: 500px;
+            text-align: center;
             opacity: 0;
         }
+        h1 {
+            font-size: 2.5em;
+        }
         .message {
-            font-size: 1.5em;
-            max-width: 80%;
-            margin: 20px auto;
-            opacity: 0;
+            font-size: 1.3em;
+            margin: 20px 0;
         }
         .heart {
             font-size: 50px;
         }
         .button {
-            background-color: white;
-            color: #ff758c;
+            background-color: #ff758c;
+            color: white;
             padding: 15px 30px;
             font-size: 1.2em;
             border: none;
@@ -53,6 +62,12 @@
         }
         .hidden {
             display: none;
+        }
+        .rocket {
+            position: absolute;
+            top: 50%;
+            left: -100px;
+            width: 80px;
         }
 
         @media (max-width: 768px) {
@@ -71,40 +86,45 @@
 </head>
 <body>
     <div class="container" id="intro">
-        <h1>Una pregunta muy especial...</h1>
-        <div class="message">
-            <p>Desde el primer momento en que te vi y nos conocimos, supe que eras alguien especial en mi vida.</p>
-            <p>Hemos compartido momentos muy lindos y tu tiempo es lo que más valoro.</p>
-            <p>Por eso quiero preguntarte algo muy importante... ❤️</p>
+        <div class="card">
+            <h1>Una pregunta muy especial...</h1>
+            <div class="message">
+                <p>Desde el primer momento en que te vi y nos conocimos, supe que eras alguien especial en mi vida.</p>
+                <p>Hemos compartido momentos muy lindos y tu tiempo es lo que más valoro.</p>
+                <p>Por eso quiero preguntarte algo muy importante... ❤️</p>
+            </div>
+            <div class="heart">❤️</div>
+            <button class="button" onclick="startAnimation()">Haz clic aquí</button>
         </div>
-        <div class="heart">❤️</div>
-        <button class="button" onclick="startAnimation()">Haz clic aquí</button>
     </div>
 
     <div class="container hidden" id="proposal">
-        <h1>¿Quieres acompañarme el sábado a hacerlo real? 💍</h1>
-        <img src="https://media.giphy.com/media/Nzyu1yTNdtDws/giphy.gif?cid=790b76119jdfv0uomkams8wdleur7pwyqtxkd37kfvyozwo9&ep=v1_gifs_search&rid=giphy.gif&ct=g" alt="Romantic GIF">
-        <button class="button" onclick="showFinalMessage()">shi, quiero ❤️</button>
+        <div class="card">
+            <h1>¿Quieres acompañarme el sábado a hacerlo real? 💍</h1>
+            <img src="https://media.giphy.com/media/Nzyu1yTNdtDws/giphy.gif" alt="Romantic GIF">
+            <button class="button" onclick="showFinalMessage()">shi, quiero ❤️</button>
+        </div>
     </div>
 
     <div class="container hidden" id="final-message">
-        <h1>¡Sabía que dirías que sí! jijijiji 🎉💖</h1>
-        <p>Te amo con todo mi corazón.</p>
-        <p>Ahora ponte linda ese día y preguntame para saber terminos y condiciones.</p>
-        <img src="https://media.giphy.com/media/ttU0HSuyrfSfe/giphy.gif?cid=790b76119jdfv0uomkams8wdleur7pwyqtxkd37kfvyozwo9&ep=v1_gifs_search&rid=giphy.gif&ct=g" alt="Celebración">
+        <div class="card">
+            <h1>¡Sabía que dirías que sí! jijijiji 🎉💖</h1>
+            <p>Te amo con todo mi corazón.</p>
+            <p>Ahora ponte linda ese día y preguntame para saber términos y condiciones.</p>
+            <img src="https://media.giphy.com/media/ttU0HSuyrfSfe/giphy.gif" alt="Celebración">
+        </div>
+        <img src="https://raw.githubusercontent.com/juanrraider666/juanrraider666.github.io/refs/heads/main/f4bded3c-de9b-44b1-a73c-f5ab3a7ca5c0_removalai_preview.png" alt="Cohete" class="rocket" id="rocket">
     </div>
 
     <script>
-        gsap.to("h1", { duration: 2, opacity: 1, y: -20 });
-        gsap.to(".message", { duration: 3, opacity: 1, delay: 1 });
+        gsap.to(".card", { duration: 2, opacity: 1, y: -20 });
         gsap.to(".heart", { scale: 1.3, repeat: -1, yoyo: true, duration: 0.5 });
-        gsap.to(".button", { duration: 3, opacity: 1, delay: 2 });
 
         function startAnimation() {
             gsap.to("#intro", { opacity: 0, duration: 1, onComplete: function() {
                 document.getElementById("intro").classList.add("hidden");
                 document.getElementById("proposal").classList.remove("hidden");
-                gsap.from("#proposal h1", { opacity: 0, y: 50, duration: 1 });
+                gsap.from("#proposal .card", { opacity: 0, scale: 0.5, duration: 1.5, ease: "elastic.out(1, 0.5)" });
             }});
         }
 
@@ -112,7 +132,14 @@
             gsap.to("#proposal", { opacity: 0, duration: 1, onComplete: function() {
                 document.getElementById("proposal").classList.add("hidden");
                 document.getElementById("final-message").classList.remove("hidden");
-                gsap.from("#final-message h1", { opacity: 0, scale: 0.5, duration: 1 });
+                gsap.from("#final-message .card", { opacity: 0, scale: 0.5, duration: 1, ease: "back.out(1.7)" });
+                gsap.to("#rocket", { x: "100vw", duration: 3, ease: "power2.out", onComplete: function() {
+                    confetti({
+                        particleCount: 100,
+                        spread: 70,
+                        origin: { y: 0.6 }
+                    });
+                }});
             }});
         }
     </script>
