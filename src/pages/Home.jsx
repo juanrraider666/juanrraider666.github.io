@@ -3,6 +3,7 @@ import Navbar from '../components/navbar.jsx';
 import Card from '../components/card.jsx';
 import Projects from './Projects.jsx';
 import {projectsapi} from "../api/projects.js";
+import dataMock from '../api/data-projects.json';
 
 const Home = () => {
     const [projects, setProjects] = useState({})
@@ -10,8 +11,7 @@ const Home = () => {
     useEffect(() => {
       const fetchProjects = async () => {
       //  const data = await projectsapi();
-        const data = '../api/data-projects.json'
-        setProjects(data);
+        setProjects(dataMock);
       };
       fetchProjects();
     }, []);
